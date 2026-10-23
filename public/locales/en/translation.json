@@ -1,0 +1,137 @@
+{
+  "header": {
+    "language": "Language",
+    "register": "Sign up",
+    "login": "Log in",
+    "lightTheme": "Switch to light theme",
+    "darkTheme": "Switch to dark theme",
+    "home": "Adl 5:8 — home"
+  },
+  "hero": {
+    "badge": "SMART DEBT MANAGEMENT",
+    "title": "Track every debt.",
+    "titleAccent": "Manage your finances.",
+    "description": "A powerful offline platform for managing debts, tracking contacts, and organizing financial records — even without the internet.",
+    "start": "Start for free",
+    "createAccount": "Create an account",
+    "offline": "Offline mode",
+    "multilingual": "Multilingual",
+    "sync": "Synchronization",
+    "security": "Security"
+  },
+  "features": {
+    "label": "FEATURES",
+    "title": "Everything you need for",
+    "subtitle": "debt management",
+    "book": {
+      "title": "Debt book",
+      "description": "Record every transaction accurately. Track who owes you and whom you owe — in one interface."
+    },
+    "contacts": {
+      "title": "Contact manager",
+      "description": "Organize contacts with detailed profiles. Link debts to people for instant clarity."
+    },
+    "offline": {
+      "title": "Offline mode",
+      "description": "Works without the internet. Data is stored locally and syncs automatically when connected."
+    },
+    "analytics": {
+      "title": "Analytics",
+      "description": "Clear dashboards showing debt trends, payment history, and balances on one screen."
+    },
+    "security": {
+      "title": "Security",
+      "description": "JWT authentication, data encryption, and role-based access protect your financial information."
+    },
+    "languages": {
+      "title": "Multilingual",
+      "description": "Use DebtBook in English, Russian, or Tajik. Switch languages without losing data."
+    }
+  },
+  "stats": {
+    "users": {
+      "title": "Active users",
+      "description": "manage debts every day"
+    },
+    "debts": {
+      "title": "Debts tracked",
+      "description": "across all accounts"
+    },
+    "uptime": {
+      "title": "Uptime",
+      "description": "reliable and always connected"
+    },
+    "languages": {
+      "title": "Languages",
+      "description": "EN · RU · TG"
+    }
+  },
+  "steps": {
+    "label": "HOW IT WORKS",
+    "title": "Get started in",
+    "subtitle": "four simple steps",
+    "step1": {
+      "title": "Create an account",
+      "description": "Sign up in seconds. No bank card needed. Your data stays on your device with optional cloud synchronization."
+    },
+    "step2": {
+      "title": "Add debts",
+      "description": "Record debts with contacts, amounts, dates, and notes. Organize them into folders for convenience."
+    },
+    "step3": {
+      "title": "Track progress",
+      "description": "Monitor payments, view analytics, and gain insight into your financial relationships."
+    },
+    "step4": {
+      "title": "Stay organized",
+      "description": "Mark debts as paid, export reports, and keep clear records of every transaction."
+    }
+  },
+  "cta": {
+    "title": "Ready to take control",
+    "subtitle": "of your finances?",
+    "description": "Join thousands of users who trust DebtBook to keep their financial records.",
+    "start": "Start for free",
+    "login": "Log in"
+  },
+  "footer": {
+    "description": "A modern offline platform for debt management. Track, organize, and settle financial records with confidence.",
+    "product": "PRODUCT",
+    "features": "Features",
+    "dashboard": "Dashboard",
+    "analytics": "Analytics",
+    "contacts": "Contacts",
+    "company": "COMPANY",
+    "about": "About us",
+    "blog": "Blog",
+    "careers": "Careers",
+    "press": "Press",
+    "support": "SUPPORT",
+    "docs": "Documentation",
+    "help": "Help center",
+    "contact": "Contact us",
+    "status": "Status",
+    "copyright": "© 2026 DebtBook. All rights reserved.",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "cookies": "Cookies"
+  },
+  "sidebar": {
+    "home": "Go to home",
+    "navigation": "Main navigation",
+    "dashboard": "Dashboard",
+    "debts": "Debts",
+    "archive": "Archive",
+    "contacts": "Contacts",
+    "folders": "Folders",
+    "user": "User",
+    "account": "Personal account"
+  },
+  "dashboardHeader": {
+    "hideMenu": "Hide menu",
+    "showMenu": "Show menu",
+    "notifications": "Notifications",
+    "fullscreen": "Fullscreen",
+    "profile": "Profile"
+  }
+}

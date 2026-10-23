@@ -1,0 +1,173 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+  --features-background: #f0f4fa;
+  --features-card: #e9edf5;
+  --features-border: #dfe4ed;
+  --features-muted: #a4aab7;
+  --background: #fafbff;
+  --text-primary: #1b2038;
+  --text-muted: #858b9e;
+  --surface: #f0f4ff;
+  --border: #d3dfff;
+  --grid: #8a9cff07;
+  --glow: #f2f5ff;
+}
+
+:root.dark {
+  color-scheme: dark;
+  --features-background: #191f33;
+  --features-card: #232b43;
+  --features-border: #35405c;
+  --features-muted: #b9c0d5;
+  --background: #171c30;
+  --text-primary: #f1f3ff;
+  --text-muted: #b9c0d5;
+  --surface: #252e49;
+  --border: #4c5673;
+  --grid: #a2b1ff08;
+  --glow: #252e50;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--text-primary);
+  background-color: var(--background);
+  background-image:
+    linear-gradient(to right, var(--grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid) 1px, transparent 1px),
+    linear-gradient(110deg, transparent 60%, var(--glow) 90%, transparent);
+  background-size: 85.4px 85.4px, 85.4px 85.4px, 100% 100%;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+@keyframes sidebar-in {
+  from { opacity: 0; transform: translateX(-12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.sidebar-panel {
+  animation: sidebar-in 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes dashboard-header-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dashboard-header {
+  animation: dashboard-header-in 350ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sidebar-panel,
+  .dashboard-header {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* Появление карточки и элементов регистрации. */
+@keyframes register-card-in {
+  from { opacity: 0; transform: translateY(18px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes register-item-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.register-card {
+  animation: register-card-in 550ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.register-heading,
+.register-fields > div,
+.register-details,
+.register-action,
+.register-error {
+  animation: register-item-in 450ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.register-heading { animation-delay: 80ms; }
+.register-fields > div:nth-child(1) { animation-delay: 140ms; }
+.register-fields > div:nth-child(2) { animation-delay: 200ms; }
+.register-fields > div:nth-child(3) { animation-delay: 260ms; }
+.register-fields > div:nth-child(4) { animation-delay: 320ms; }
+.register-details { animation-delay: 360ms; }
+.register-action { animation-delay: 400ms; }
+.register-error { animation-duration: 200ms; }
+
+/* Подсветка активного поля и его подписи. */
+.register-fields label {
+  transition: color 200ms ease;
+}
+
+.register-fields > div:focus-within label {
+  color: #477eff;
+}
+
+.register-fields input {
+  transition: border-color 200ms ease, box-shadow 200ms ease, background-color 200ms ease;
+}
+
+.register-fields input:hover:not(:focus) {
+  border-color: #aebed8;
+}
+
+.register-fields input:focus {
+  background-color: #fcfdff;
+}
+
+/* Блик и мягкий подъём кнопки. */
+.register-submit {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #4f86ff, #3464e8);
+  box-shadow: 0 4px 12px #3974ff24, inset 0 1px 0 #ffffff30;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.register-submit::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 30%, #ffffff25 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform 650ms ease;
+  pointer-events: none;
+}
+
+.register-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px #3974ff40, inset 0 1px 0 #ffffff40;
+}
+
+.register-submit:hover::before {
+  transform: translateX(120%);
+}
+
+.register-submit:active {
+  transform: translateY(0) scale(0.985);
+  box-shadow: 0 2px 6px #3974ff25;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .register-card,
+  .register-card *,
+  .register-submit::before {
+    animation: none;
+    transition: none;
+  }
+
+  .register-submit:hover,
+  .register-submit:active {
+    transform: none;
+  }
+
+  .register-submit::before {
+    display: none;
+  }
+}
