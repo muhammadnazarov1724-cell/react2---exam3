@@ -125,13 +125,112 @@
     "contacts": "Контакты",
     "folders": "Папки",
     "user": "Пользователь",
-    "account": "Личный аккаунт"
+    "account": "Личный аккаунт",
+    "logout": "Выйти",
+    "profile": "Профиль",
+    "closeAccountMenu": "Закрыть меню аккаунта"
   },
   "dashboardHeader": {
     "hideMenu": "Скрыть меню",
     "showMenu": "Показать меню",
     "notifications": "Уведомления",
     "fullscreen": "Полный экран",
-    "profile": "Профиль"
+    "profile": "Профиль",
+    "editProfile": "Редактировать профиль",
+    "viewProfile": "Посмотреть профиль",
+    "socialProfile": "Социальный профиль"
+  },
+  "dashboardStats": {
+    "net": "Чистый итог",
+    "owedToMe": "Мне должны",
+    "iOwe": "Я должен"
+  },
+  "profilePage": {
+    "avatar": "Аватар пользователя",
+    "editName": "Редактировать имя",
+    "owner": "Владелец",
+    "users": "Пользователи",
+    "usersDescription": "Управление пользователями и ролями",
+    "contactsDescription": "Просмотр и управление контактами",
+    "settings": "Настройки",
+    "darkMode": "Тёмный режим"
+  },
+  "foldersPage": {
+    "add": "Добавить папку",
+    "unfiled": "Без папки",
+    "open": "Открыть папку",
+    "empty": "Созданных папок пока нет"
+  },
+  "contactPage": {
+    "add": "Добавить контакт",
+    "search": "Поиск контактов...",
+    "phone": "Телефон",
+    "notes": "Заметки",
+    "empty": "Контактов пока нет"
+  },
+  "archivePage": {
+    "empty": "Архив пока пуст",
+    "description": "Описание"
+  },
+  "debtsPage": {
+    "empty": "Долгов пока нет",
+    "export": "Экспорт",
+    "quickPayment": "Быстрый платёж",
+    "search": "Поиск по имени",
+    "allContacts": "Все контакты",
+    "allFolders": "Все папки",
+    "filters": "Фильтры",
+    "sort": "Сортировка",
+    "fullName": "Полное имя",
+    "amount": "Сумма",
+    "progress": "Прогресс",
+    "dueDate": "Дата погашения",
+    "actions": "Действия",
+    "actionsFor": "Действия для {{name}}",
+    "remaining": "Остаток долга: {{name}}"
+  },
+  "addDebtButton": {
+    "add": "Добавить долг"
+  },
+  "addDebtDialog": {
+    "close": "Закрыть форму",
+    "name": "Имя человека",
+    "namePlaceholder": "Введите имя...",
+    "amountPlaceholder": "Введите сумму",
+    "direction": "Тип",
+    "folder": "Папка",
+    "noFolder": "Нет",
+    "descriptionPlaceholder": "Введите описание",
+    "photo": "Фото",
+    "addPhoto": "Добавить фото",
+    "photoUnavailable": "Прикрепление фото пока недоступно",
+    "cancel": "Отмена",
+    "save": "Сохранить"
+  },
+  "recentPayments": {
+    "title": "Последние платежи",
+    "emptyTitle": "Платежей пока нет",
+    "emptyDescription": "Здесь появятся последние платежи по вашим долгам."
+  },
+  "dashboardChart": {
+    "title": "Обзор долгов по месяцам",
+    "year": "Выбрать год",
+    "lent": "Одолжено (мне должны)",
+    "borrowed": "Заимствовано (я должен)",
+    "description": "Обзор долгов за {{year}} год. Мне должны и я должен: 0 TJS во всех месяцах.",
+    "months": {
+      "jan": "Янв",
+      "feb": "Фев",
+      "mar": "Мар",
+      "apr": "Апр",
+      "may": "Май",
+      "jun": "Июн",
+      "jul": "Июл",
+      "aug": "Авг",
+      "sep": "Сен",
+      "oct": "Окт",
+      "nov": "Ноя",
+      "dec": "Дек"
+    }
   }
 }

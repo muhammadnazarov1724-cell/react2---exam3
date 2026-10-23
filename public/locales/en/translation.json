@@ -125,13 +125,112 @@
     "contacts": "Contacts",
     "folders": "Folders",
     "user": "User",
-    "account": "Personal account"
+    "account": "Personal account",
+    "logout": "Logout",
+    "profile": "Profile",
+    "closeAccountMenu": "Close account menu"
   },
   "dashboardHeader": {
     "hideMenu": "Hide menu",
     "showMenu": "Show menu",
     "notifications": "Notifications",
     "fullscreen": "Fullscreen",
-    "profile": "Profile"
+    "profile": "Profile",
+    "editProfile": "Edit Profile",
+    "viewProfile": "View Profile",
+    "socialProfile": "Social Profile"
+  },
+  "dashboardStats": {
+    "net": "Net balance",
+    "owedToMe": "Owed to me",
+    "iOwe": "I owe"
+  },
+  "profilePage": {
+    "avatar": "User avatar",
+    "editName": "Edit name",
+    "owner": "Owner",
+    "users": "Users",
+    "usersDescription": "Manage users and roles",
+    "contactsDescription": "View and manage contacts",
+    "settings": "Settings",
+    "darkMode": "Dark mode"
+  },
+  "foldersPage": {
+    "add": "Add folder",
+    "unfiled": "No folder",
+    "open": "Open folder",
+    "empty": "No custom folders yet"
+  },
+  "contactPage": {
+    "add": "Add contact",
+    "search": "Search contacts...",
+    "phone": "Phone",
+    "notes": "Notes",
+    "empty": "No contacts yet"
+  },
+  "archivePage": {
+    "empty": "The archive is empty",
+    "description": "Description"
+  },
+  "debtsPage": {
+    "empty": "No debts yet",
+    "export": "Export",
+    "quickPayment": "Quick payment",
+    "search": "Search by name",
+    "allContacts": "All contacts",
+    "allFolders": "All folders",
+    "filters": "Filters",
+    "sort": "Sort",
+    "fullName": "Full name",
+    "amount": "Amount",
+    "progress": "Progress",
+    "dueDate": "Due date",
+    "actions": "Actions",
+    "actionsFor": "Actions for {{name}}",
+    "remaining": "Remaining debt: {{name}}"
+  },
+  "addDebtButton": {
+    "add": "Add debt"
+  },
+  "addDebtDialog": {
+    "close": "Close form",
+    "name": "Person's name",
+    "namePlaceholder": "Enter a name...",
+    "amountPlaceholder": "Enter an amount",
+    "direction": "Type",
+    "folder": "Folder",
+    "noFolder": "None",
+    "descriptionPlaceholder": "Enter a description",
+    "photo": "Photo",
+    "addPhoto": "Add photo",
+    "photoUnavailable": "Photo attachments are currently unavailable",
+    "cancel": "Cancel",
+    "save": "Save"
+  },
+  "recentPayments": {
+    "title": "Recent payments",
+    "emptyTitle": "No payments yet",
+    "emptyDescription": "Your latest debt payments will appear here."
+  },
+  "dashboardChart": {
+    "title": "Monthly debt overview",
+    "year": "Select year",
+    "lent": "Lent (owed to me)",
+    "borrowed": "Borrowed (I owe)",
+    "description": "Debt overview for {{year}}. Owed to me and I owe: 0 TJS in every month.",
+    "months": {
+      "jan": "Jan",
+      "feb": "Feb",
+      "mar": "Mar",
+      "apr": "Apr",
+      "may": "May",
+      "jun": "Jun",
+      "jul": "Jul",
+      "aug": "Aug",
+      "sep": "Sep",
+      "oct": "Oct",
+      "nov": "Nov",
+      "dec": "Dec"
+    }
   }
 }

@@ -125,13 +125,112 @@
     "contacts": "Мухотибон",
     "folders": "Ҷузвдонҳо",
     "user": "Корбар",
-    "account": "Ҳисоби шахсӣ"
+    "account": "Ҳисоби шахсӣ",
+    "logout": "Баромадан",
+    "profile": "Профил",
+    "closeAccountMenu": "Пӯшидани менюи ҳисоб"
   },
   "dashboardHeader": {
     "hideMenu": "Пинҳон кардани меню",
     "showMenu": "Нишон додани меню",
     "notifications": "Огоҳиҳо",
     "fullscreen": "Экрани пурра",
-    "profile": "Профил"
+    "profile": "Профил",
+    "editProfile": "Таҳрири профил",
+    "viewProfile": "Дидани профил",
+    "socialProfile": "Профили иҷтимоӣ"
+  },
+  "dashboardStats": {
+    "net": "Бақияи холис",
+    "owedToMe": "Ба ман қарздоранд",
+    "iOwe": "Ман қарздорам"
+  },
+  "profilePage": {
+    "avatar": "Акси корбар",
+    "editName": "Таҳрири ном",
+    "owner": "Соҳиб",
+    "users": "Корбарон",
+    "usersDescription": "Идоракунии корбарон ва нақшҳо",
+    "contactsDescription": "Дидан ва идора кардани мухотибон",
+    "settings": "Танзимот",
+    "darkMode": "Реҷаи торик"
+  },
+  "foldersPage": {
+    "add": "Илова кардани ҷузвдон",
+    "unfiled": "Бе ҷузвдон",
+    "open": "Кушодани ҷузвдон",
+    "empty": "Шумо ҳоло ҷузвдон насохтаед"
+  },
+  "contactPage": {
+    "add": "Илова кардани мухотиб",
+    "search": "Ҷустуҷӯи мухотибон...",
+    "phone": "Телефон",
+    "notes": "Ёддоштҳо",
+    "empty": "Ҳоло мухотибон нестанд"
+  },
+  "archivePage": {
+    "empty": "Бойгонӣ ҳоло холӣ аст",
+    "description": "Тавсиф"
+  },
+  "debtsPage": {
+    "empty": "Ҳоло қарзҳо нестанд",
+    "export": "Содирот",
+    "quickPayment": "Пардохти зуд",
+    "search": "Ҷустуҷӯ аз рӯйи ном",
+    "allContacts": "Ҳамаи мухотибон",
+    "allFolders": "Ҳамаи ҷузвдонҳо",
+    "filters": "Филтрҳо",
+    "sort": "Ҷобаҷогузорӣ",
+    "fullName": "Номи пурра",
+    "amount": "Маблағ",
+    "progress": "Пешрафт",
+    "dueDate": "Муҳлати пардохт",
+    "actions": "Амалҳо",
+    "actionsFor": "Амалҳо барои {{name}}",
+    "remaining": "Бақияи қарз: {{name}}"
+  },
+  "addDebtButton": {
+    "add": "Илова кардани қарз"
+  },
+  "addDebtDialog": {
+    "close": "Пӯшидани шакл",
+    "name": "Номи шахс",
+    "namePlaceholder": "Номро ворид кунед...",
+    "amountPlaceholder": "Маблағро ворид кунед",
+    "direction": "Навъ",
+    "folder": "Ҷузвдон",
+    "noFolder": "Нест",
+    "descriptionPlaceholder": "Тавсифро ворид кунед",
+    "photo": "Акс",
+    "addPhoto": "Илова кардани акс",
+    "photoUnavailable": "Замима кардани акс ҳоло дастрас нест",
+    "cancel": "Бекор кардан",
+    "save": "Захира кардан"
+  },
+  "recentPayments": {
+    "title": "Пардохтҳои охирин",
+    "emptyTitle": "Ҳоло пардохтҳо нестанд",
+    "emptyDescription": "Дар ин ҷо пардохтҳои охирини қарзҳои шумо пайдо мешаванд."
+  },
+  "dashboardChart": {
+    "title": "Шарҳи қарзҳо аз рӯйи моҳҳо",
+    "year": "Интихоби сол",
+    "lent": "Қарз додам (ба ман қарздоранд)",
+    "borrowed": "Қарз гирифтам (ман қарздорам)",
+    "description": "Шарҳи қарзҳо барои соли {{year}}. Ба ман қарздоранд ва ман қарздорам: дар ҳамаи моҳҳо 0 TJS.",
+    "months": {
+      "jan": "Янв",
+      "feb": "Фев",
+      "mar": "Мар",
+      "apr": "Апр",
+      "may": "Май",
+      "jun": "Июн",
+      "jul": "Июл",
+      "aug": "Авг",
+      "sep": "Сен",
+      "oct": "Окт",
+      "nov": "Ноя",
+      "dec": "Дек"
+    }
   }
 }

@@ -1,22 +1,78 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { NavLink } from 'react-router-dom'
+import { axiosRequest, handleLogout } from '../utils/token'
+import { useUserStore } from '../store/useUserStore'
 
-export default function DashboardHeader({ sidebarOpen, onToggleSidebar }: {
+export default function DashboardHeader({
+  sidebarOpen,
+  onToggleSidebar,
+  theme,
+}: {
   sidebarOpen: boolean
   onToggleSidebar: () => void
+  theme?: {
+    dark: boolean
+    setDark: (value: boolean) => void
+  }
 }) {
   const { t, i18n } = useTranslation()
-  const [dark, setDark] = useState(() => localStorage.getItem('theme') === 'dark')
+  const user = useUserStore((state) => state.user)
+  const setUser = useUserStore((state) => state.setUser)
+  const [profileOpen, setProfileOpen] = useState(false)
+  const profileMenuRef = useRef<HTMLDivElement>(null)
+  const profileButtonRef = useRef<HTMLButtonElement>(null)
+  const viewProfileRef = useRef<HTMLAnchorElement>(null)
+
+  const [localDark, setLocalDark] = useState(
+    () => localStorage.getItem('theme') === 'dark'
+  )
+
+  const dark = theme ? theme.dark : localDark
+  const setDark = theme ? theme.setDark : setLocalDark
+
+  useEffect(() => {
+    if (user || !localStorage.getItem('token')) return
+
+    let active = true
+
+    async function loadUser() {
+      try {
+        const { data } = await axiosRequest.get('/users/me')
+        if (active) setUser(data)
+      } catch (error) {
+        if (active) console.error('Не удалось загрузить профиль:', error)
+      }
+    }
+
+    loadUser()
+    return () => { active = false }
+  }, [user, setUser])
 
   useEffect(() => {
     localStorage.setItem('theme', dark ? 'dark' : 'light')
     document.documentElement.classList.toggle('dark', dark)
   }, [dark])
 
+  useEffect(() => {
+    if (!profileOpen) return
+
+    viewProfileRef.current?.focus()
+
+    function closeOutside(event: PointerEvent) {
+      if (event.target instanceof Node && !profileMenuRef.current?.contains(event.target)) {
+        setProfileOpen(false)
+      }
+    }
+
+    document.addEventListener('pointerdown', closeOutside)
+    return () => document.removeEventListener('pointerdown', closeOutside)
+  }, [profileOpen])
+
   const buttonStyle = 'flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-xl text-[var(--text-muted)] transition-[color,background-color,transform] duration-200 hover:bg-[var(--surface)] hover:text-[#477eff] active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#477eff] motion-reduce:transform-none motion-reduce:transition-none'
 
   return (
-    <div className="dashboard-header sticky top-0 z-30 flex min-h-[76px] flex-wrap items-center justify-between gap-2 bg-[var(--background)] px-4 py-3 font-[Arial,sans-serif] transition-colors duration-200 sm:px-10">
+    <div className={`dashboard-header sticky top-0 flex min-h-[76px] flex-wrap items-center justify-between gap-2 bg-[var(--background)] px-4 py-3 font-[Arial,sans-serif] transition-colors duration-200 sm:px-10 ${profileOpen ? 'z-50' : 'z-30'}`}>
       <button
         type="button"
         onClick={onToggleSidebar}
@@ -88,7 +144,96 @@ export default function DashboardHeader({ sidebarOpen, onToggleSidebar }: {
           </svg>
         </span>
 
-        <span className="ml-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-[#c5edff] to-[#66bcfa] text-[27px] ring-2 ring-[var(--background)] transition-transform duration-200 hover:scale-105 motion-reduce:transform-none" role="img" aria-label={t('dashboardHeader.profile')} title={t('dashboardHeader.profile')}>👨🏻‍💻</span>
+        <div
+          ref={profileMenuRef}
+          className="relative ml-1 shrink-0"
+          onBlur={(event) => {
+            if (!event.currentTarget.contains(event.relatedTarget)) setProfileOpen(false)
+          }}
+          onKeyDown={(event) => {
+            if (event.key === 'Escape') {
+              setProfileOpen(false)
+              profileButtonRef.current?.focus()
+            }
+          }}
+        >
+          <button
+            ref={profileButtonRef}
+            type="button"
+            onClick={() => setProfileOpen(!profileOpen)}
+            aria-label={t('dashboardHeader.profile')}
+            title={t('dashboardHeader.profile')}
+            aria-expanded={profileOpen}
+            aria-haspopup="dialog"
+            aria-controls={profileOpen ? 'dashboard-profile-menu' : undefined}
+            className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-linear-to-br from-[#c5edff] to-[#66bcfa] text-[27px] ring-2 ring-[var(--background)] transition-[transform,box-shadow] duration-200 hover:scale-105 hover:shadow-[0_3px_12px_#477eff25] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#477eff] active:scale-95 motion-reduce:transform-none motion-reduce:transition-none"
+          >
+            <span aria-hidden="true">👨🏻‍💻</span>
+          </button>
+
+          {profileOpen && (
+            <div
+              id="dashboard-profile-menu"
+              role="dialog"
+              aria-labelledby="dashboard-profile-title"
+              className="absolute top-[calc(100%+12px)] right-0 max-h-[calc(100dvh-132px)] w-[260px] max-w-[calc(100vw-32px)] origin-top-right overflow-y-auto overscroll-contain rounded-[12px] border border-[var(--features-border)] bg-[var(--card-background)] shadow-[0_8px_32px_#172b4d14] transition-[opacity,translate,scale] duration-200 starting:translate-y-2 starting:scale-95 starting:opacity-0 motion-reduce:transition-none"
+            >
+              <div className="flex items-center gap-3 px-4 py-5">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-[#c5edff] to-[#66bcfa] text-[27px]" aria-hidden="true">👨🏻‍💻</span>
+                <div className="min-w-0 flex-1">
+                  <p className="truncate text-[13px] font-semibold text-[var(--text-primary)]">{user?.name || t('sidebar.user')}</p>
+                  <p className="mt-1 text-[11px] text-[var(--text-muted)]">{t('profilePage.owner')}</p>
+                </div>
+                <button type="button" onClick={handleLogout} aria-label={t('sidebar.logout')} title={t('sidebar.logout')} className="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-[8px] bg-[#ed252a20] text-[#ed252a] transition-[background-color,color,transform] duration-200 hover:bg-[#dc2626] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ed252a] active:scale-95 motion-reduce:transform-none motion-reduce:transition-none">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h4m5-13 5 5-5 5m-7-5h12" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+              </div>
+
+              <div className="flex items-center gap-2 border-b-2 border-[#477eff] px-5 pt-2 pb-3 text-[#477eff]">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="7" r="4" stroke="currentColor" strokeWidth="1.6" />
+                  <path d="M5 20v-1a7 7 0 0 1 14 0v1H5Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+                </svg>
+                <h2 id="dashboard-profile-title" className="text-[13px] font-medium">{t('dashboardHeader.profile')}</h2>
+              </div>
+
+              <div className="space-y-1 p-2">
+                <button type="button" disabled className="flex min-h-10 w-full cursor-not-allowed items-center gap-3 rounded-[8px] bg-[var(--surface)] px-3 text-left text-[12px] text-[#477eff]">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="shrink-0">
+                    <path d="m14 5 5 5M4 20l4.5-1 11-11a3.2 3.2 0 0 0-4.5-4.5l-11 11L3 20h1Zm0 3h16" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  <span>{t('dashboardHeader.editProfile')}</span>
+                </button>
+
+                <NavLink ref={viewProfileRef} to="/profile" onClick={() => setProfileOpen(false)} className="group flex min-h-10 items-center gap-3 rounded-[8px] px-3 text-[12px] text-[var(--text-muted)] outline-none transition-[color,background-color] duration-200 hover:bg-[var(--surface)] hover:text-[#477eff] focus-visible:bg-[var(--surface)] focus-visible:text-[#477eff] focus-visible:ring-2 focus-visible:ring-[#477eff] motion-reduce:transition-none">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="shrink-0">
+                    <circle cx="12" cy="7" r="4" opacity="0.5" />
+                    <path d="M4 20v-1a8 8 0 0 1 16 0v1H4Z" />
+                  </svg>
+                  <span>{t('dashboardHeader.viewProfile')}</span>
+                </NavLink>
+
+                <NavLink ref={viewProfileRef} to="/profile" onClick={() => setProfileOpen(false)} className="group flex min-h-10 items-center gap-3 rounded-[8px] px-3 text-[12px] text-[var(--text-muted)] outline-none transition-[color,background-color] duration-200 hover:bg-[var(--surface)] hover:text-[#477eff] focus-visible:bg-[var(--surface)] focus-visible:text-[#477eff] focus-visible:ring-2 focus-visible:ring-[#477eff] motion-reduce:transition-none">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="shrink-0">
+                    <circle cx="12" cy="7" r="4" opacity="0.5" />
+                    <path d="M4 20v-1a8 8 0 0 1 16 0v1H4Z" />
+                  </svg>
+                  <span>{t('dashboardHeader.socialProfile')}</span>
+                </NavLink>
+
+
+                <button type="button" onClick={handleLogout} className="flex min-h-10 w-full cursor-pointer items-center gap-3 rounded-[8px] px-3 text-left text-[12px] text-[var(--text-muted)] outline-none transition-[color,background-color] duration-200 hover:bg-[#ed252a10] hover:text-[#ed252a] focus-visible:bg-[#ed252a10] focus-visible:text-[#ed252a] focus-visible:ring-2 focus-visible:ring-[#ed252a] motion-reduce:transition-none">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="shrink-0">
+                    <path d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h4m5-13 5 5-5 5m-7-5h12" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  <span>{t('sidebar.logout')}</span>
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )

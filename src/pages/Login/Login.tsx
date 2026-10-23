@@ -2,9 +2,11 @@
 import { NavLink } from 'react-router-dom'
 import { axiosRequest, saveTokens } from '../../utils/token';
 import { useState } from 'react';
+import { useUserStore } from '../../store/useUserStore'
 
 
 export default function Login() {
+    const setUser = useUserStore((state) => state.setUser)
 
     async function LogIN(info: {email: string; password: string}) {
         setErrorMessage('')
@@ -12,6 +14,7 @@ export default function Login() {
             const {data} = await axiosRequest.post('/auth/login', info)
     
             saveTokens(data.accessToken, data.refreshToken)
+            setUser(data.user)
     
             window.location.href = '/menu'
         } catch (error) {

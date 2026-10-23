@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useUserStore } from '../store/useUserStore'
 export const axiosRequest = axios.create({
     baseURL: import.meta.env.VITE_API,
 })
@@ -21,6 +22,7 @@ axiosRequest.interceptors.request.use((config) => {
 export const removeToken = () => {
     localStorage.removeItem('token')
     localStorage.removeItem('refresh')
+    useUserStore.getState().setUser(null)
 }
 
 axiosRequest.interceptors.response.use(
@@ -64,3 +66,23 @@ axiosRequest.interceptors.response.use(
 )
 
  
+export const getUser = () => {
+    return useUserStore.getState().user
+}
+
+
+    export async function handleLogout() {
+    const refreshToken = localStorage.getItem('refresh')
+
+    try {
+        if (refreshToken) {
+            await axiosRequest.post('/auth/logout', {refreshToken})
+        }
+    } catch {
+        console.error('Не удалось завершить сессию на сервере')
+    }
+    finally {
+        removeToken()
+        window.location.replace('/login')
+    }
+   }

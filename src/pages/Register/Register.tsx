@@ -1,8 +1,10 @@
 import { NavLink } from 'react-router-dom'
 import { axiosRequest, saveTokens } from '../../utils/token'
 import { useState } from 'react'
+import { useUserStore } from '../../store/useUserStore'
 
 export default function Register() {
+    const setUser = useUserStore((state) => state.setUser)
 
     const [errorMessage, setErrorMessage] = useState('')
 
@@ -29,6 +31,7 @@ export default function Register() {
             const { data } = await axiosRequest.post('/auth/register', info)
 
             saveTokens(data.accessToken, data.refreshToken)
+            setUser(data.user)
 
             window.location.href = '/menu'
         } catch (error) {
