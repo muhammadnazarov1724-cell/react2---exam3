@@ -166,7 +166,21 @@
     "search": "Search contacts...",
     "phone": "Phone",
     "notes": "Notes",
-    "empty": "No contacts yet"
+    "empty": "No contacts yet",
+    "edit": "Edit contact",
+    "loading": "Loading contacts and debt balances…",
+    "loadFailed": "Could not load contacts and debt balances. Please try again.",
+    "retry": "Retry",
+    "saveFailed": "Could not save the contact. Please try again.",
+    "deleteTitle": "Delete contact",
+    "deleteMessage": "Delete contact “{{name}}”? Copies of associated debts will remain in the archive.",
+    "deleteFailed": "Could not delete the contact. Please try again.",
+    "validation": {
+      "nameRequired": "Enter the person's name.",
+      "nameMax": "The name must contain no more than 120 characters.",
+      "phoneMax": "The phone number must contain no more than 40 characters.",
+      "noteMax": "The note must contain no more than 1000 characters."
+    }
   },
   "archivePage": {
     "empty": "The archive is empty",

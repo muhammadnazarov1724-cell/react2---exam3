@@ -120,16 +120,34 @@ export default function DashboardHeader({
       </button>
 
       <div className="flex items-center gap-1 sm:gap-3">
-        <select
-          aria-label={t("header.language")}
-          value={i18n.resolvedLanguage || "ru"}
-          onChange={(event) => void i18n.changeLanguage(event.target.value)}
-          className="h-10 cursor-pointer rounded-xl border border-[var(--features-border)] bg-[var(--card-background)] px-3 text-sm text-[var(--text-primary)] outline-none hover:border-[#477eff] focus:ring-2 focus:ring-[#477eff30]"
-        >
-          <option value="en">EN</option>
-          <option value="ru">RU</option>
-          <option value="tj">TJ</option>
-        </select>
+        <div className="flex shrink-0 items-center gap-1.5">
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            aria-hidden="true"
+            className="shrink-0 text-[var(--text-muted)]"
+          >
+            <rect x="2" y="2" width="20" height="20" rx="6" fill="currentColor" opacity="0.2" />
+            <path
+              d="M7 8h10M12 6v2m3 0c-.8 5-3.7 7.6-7 9m1-6c1.5 3 4 5 7 6"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+            />
+          </svg>
+          <select
+            aria-label={t("header.language")}
+            value={i18n.resolvedLanguage || "ru"}
+            onChange={(event) => void i18n.changeLanguage(event.target.value)}
+            className="h-10 cursor-pointer rounded-xl border border-[var(--features-border)] bg-[var(--card-background)] px-3 text-sm text-[var(--text-primary)] outline-none hover:border-[#477eff] focus:ring-2 focus:ring-[#477eff30]"
+          >
+            <option value="en">EN</option>
+            <option value="ru">RU</option>
+            <option value="tj">TJ</option>
+          </select>
+        </div>
 
         <span
           className="hidden h-10 w-8 items-center justify-center text-[#82cbb3] sm:flex"
