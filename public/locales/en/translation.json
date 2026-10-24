@@ -170,10 +170,18 @@
   },
   "archivePage": {
     "empty": "The archive is empty",
-    "description": "Description"
+    "description": "Description",
+    "status": "Status",
+    "partial": "Partially paid",
+    "storageNotice": "Debt copies are saved in this browser, even after removal from Debts. Clearing browser data will erase the archive.",
+    "storageFailed": "Could not read or save the archive. Check browser storage availability and reload the page.",
+    "deleteFor": "Delete debt copy: {{name}}",
+    "deleteTitle": "Delete from archive",
+    "deleteMessage": "Delete this copy from the archive? Deleting a copy does not change the debt list."
   },
   "debtsPage": {
     "empty": "No debts yet",
+    "noResults": "No matching debts found",
     "export": "Export",
     "quickPayment": "Quick payment",
     "search": "Search by name",
@@ -187,7 +195,33 @@
     "dueDate": "Due date",
     "actions": "Actions",
     "actionsFor": "Actions for {{name}}",
-    "remaining": "Remaining debt: {{name}}"
+    "remaining": "Remaining debt: {{name}}",
+    "edit": "Edit",
+    "markClosed": "Mark as closed",
+    "delete": "Delete",
+    "deleteTitle": "Delete debt",
+    "deleteMessage": "Are you sure you want to delete this debt?",
+    "deleting": "Deleting…",
+    "deleteFailed": "Could not delete the debt. Please try again."
+  },
+  "debtDetails": {
+    "title": "Debt details",
+    "back": "Back to debts",
+    "contactName": "Person's name",
+    "active": "Active",
+    "closed": "Closed",
+    "closeTitle": "Close debt",
+    "closeMessage": "Are you sure you want to mark this debt as closed?",
+    "closing": "Closing…",
+    "closeFailed": "Could not close the debt. Please try again.",
+    "paid": "Paid",
+    "totalAmount": "Total amount",
+    "details": "Details",
+    "createdAt": "Created on",
+    "payments": "Payments ({{count}})",
+    "noPayments": "No payments yet.",
+    "addPayment": "Add payment",
+    "removePayment": "Reduce payment"
   },
   "addDebtButton": {
     "add": "Add debt"
@@ -206,6 +240,21 @@
     "photoUnavailable": "Photo attachments are currently unavailable",
     "cancel": "Cancel",
     "save": "Save"
+  },
+  "editDebtDialog": {
+    "title": "Edit debt",
+    "saving": "Saving…",
+    "saveFailed": "Could not save the changes. Please try again.",
+    "validation": {
+      "nameRequired": "Enter the person's name.",
+      "nameMax": "The name must contain no more than 120 characters.",
+      "amountRequired": "Enter an amount.",
+      "amountMin": "The amount must be at least 0.01.",
+      "amountMax": "The amount must not exceed 1,000,000,000.",
+      "amountInvalid": "Enter a valid amount.",
+      "directionRequired": "Choose a debt type.",
+      "descriptionMax": "The description must contain no more than 1000 characters."
+    }
   },
   "recentPayments": {
     "title": "Recent payments",

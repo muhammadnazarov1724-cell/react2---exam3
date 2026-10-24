@@ -11,6 +11,7 @@ const Archive = lazy(()=> import('./pages/archive/Archive'))
 const Contact = lazy(()=> import('./pages/contact/Contact'))
 const Papki = lazy(()=> import('./pages/papki/Papki'))
 const Profile = lazy(()=> import('./components/Profile'))
+const DebtDetails = lazy(() => import('./pages/Dolgi/DebtDetails'))
 
 export default function App() {
   const router = createBrowserRouter([
@@ -89,6 +90,14 @@ export default function App() {
               <Profile/>
             </Suspense>
           )
+        },
+        {
+          path: '/dolgi/:id',
+          element: (
+            <Suspense fallback={<h1>Loading...</h1>}>
+              <DebtDetails />
+            </Suspense>
+          ),
         },
       ]
     }

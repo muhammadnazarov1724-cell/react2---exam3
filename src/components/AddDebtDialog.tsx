@@ -13,6 +13,8 @@ export default function AddDebtDialog({ initialDirection, onClose }: {
 }) {
   const { t } = useTranslation()
   const getSummary = useDebtStore((state) => state.getSummary)
+  const getDebts = useDebtStore((state) => state.getDebts)
+  const rememberDebt = useDebtStore((state) => state.rememberDebt)
   const [direction, setDirection] = useState(initialDirection)
   const dialogRef = useRef<HTMLDialogElement>(null)
 
@@ -71,7 +73,8 @@ export default function AddDebtDialog({ initialDirection, onClose }: {
         due_date: form.get('due_date') || undefined,
       })
       console.log('Долг сохранён:', debt)
-      getSummary()
+      rememberDebt({ ...debt, contact_name: contact.name })
+      await Promise.all([getDebts(), getSummary()])
       closeDialog()
     } catch (error) {
       console.error('Не удалось сохранить долг:', error)
@@ -170,9 +173,17 @@ export default function AddDebtDialog({ initialDirection, onClose }: {
             </button>
           </div>
 
-          <div className="flex justify-end gap-2 pt-2">
+          <div className="flex items-center justify-end gap-3 pt-2">
             <button type="button" onClick={closeDialog} className="h-10 cursor-pointer rounded-[9px] px-4 text-[14px] font-medium text-[#477eff] transition-[background-color,transform] duration-200 hover:bg-[#477eff10] focus-visible:outline-2 focus-visible:outline-[#477eff] active:scale-95 motion-reduce:transform-none motion-reduce:transition-none">{t('addDebtDialog.cancel')}</button>
-            <button type="submit"  className="h-10 cursor-pointer rounded-[9px] bg-[#477eff] px-5 text-[14px] font-medium text-white opacity-60">{t('addDebtDialog.save')}</button>
+            <button
+              type="submit"
+              className="inline-flex h-11 min-w-[140px] cursor-pointer items-center justify-center gap-2 rounded-[10px] border border-white/15 bg-[#3d6cf0] px-5 text-[14px] font-semibold text-white shadow-[0_5px_14px_#477eff30] transition-[background-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:bg-[#305cda] hover:shadow-[0_8px_22px_#477eff45] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#477eff] active:translate-y-0 active:scale-[0.98] motion-reduce:transform-none motion-reduce:transition-none"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="shrink-0">
+                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h12l4 4v12a2 2 0 0 1-2 2ZM7 3v6h10V3M7 21v-8h10v8" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              {t('addDebtDialog.save')}
+            </button>
           </div>
         </form>
       </div>
